@@ -41,9 +41,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 30.0, vertical: 10.0),
+                      horizontal: 30.0,
+                      vertical: 10.0,
+                    ),
                     child: TextFormField(
-                      decoration: InputDecoration(labelText: 'Email'),
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                      ),
                       validator: (input) => !input.contains('@')
                           ? 'Please Enter a valid Email Address'
                           : null,
@@ -51,17 +55,30 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30.0, vertical: 10.0),
-                      child: TextFormField(
-                        decoration: InputDecoration(labelText: 'Password'),
-                        validator: (input) => input.length < 6
-                            ? 'Length is less tahn six characters'
-                            : null,
-                        onSaved: (input) => password = input,
-                        obscureText: true,
-                      )),
-                  SizedBox(height: 20.0),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30.0,
+                      vertical: 10.0,
+                    ),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                      ),
+                      validator: (input) => input.length < 6
+                          ? 'Length is less tahn six characters'
+                          : null,
+                      onSaved: (input) => password = input,
+                      obscureText: true,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                    width: 10.0,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.red[400],
+                      ),
+                    ),
+                  ),
                   Container(
                     width: 250.0,
                     child: FlatButton(
