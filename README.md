@@ -1,6 +1,9 @@
 # first_time_be_gentle
 
 A new Flutter project.
+This is just mme getting familiar with the flutter app development environment. Mapping concepts of Dart to
+And freestyling Ui/UX from Dribble
+
 
 ## Getting Started
 
