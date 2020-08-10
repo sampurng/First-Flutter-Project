@@ -1,4 +1,4 @@
-# first_time_be_gentle
+# first_time_in_Flutter
 
 A new Flutter project.
 This is just mme getting familiar with the flutter app development environment. Mapping concepts of Dart to
