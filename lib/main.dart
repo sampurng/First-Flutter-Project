@@ -11,7 +11,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Instagram',
-      home: LoginScreen(),
+      home: new Scaffold(
+        body: new LoginScreen(),
+      ),
       debugShowCheckedModeBanner: false,
       routes: {
         LoginScreen.id: (context) => LoginScreen(),

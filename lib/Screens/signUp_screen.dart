@@ -17,12 +17,13 @@ class _SignUp_screenState extends State<SignUp_screen> {
   final _formKey = GlobalKey<FormState>();
   String name, email, password;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  FirebaseAuth temp;
+
   FirebaseUser user;
+  FirebaseUser temp;
 
   final SnackBar mySnackBar = new SnackBar(content: Text('Account Created'));
 
-  _submit() async {
+  FirebaseUser get _submit {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       print(name);
@@ -31,14 +32,16 @@ class _SignUp_screenState extends State<SignUp_screen> {
 
       //Create User in USing Firebase
       try {
-        temp = (await _auth.createUserWithEmailAndPassword(
-            email: email, password: password)) as FirebaseAuth;
+        _auth.createUserWithEmailAndPassword(email: email, password: password);
       } catch (e) {
         print(e.toString());
-      } finally {
-        print('DADADADADA');
-      }
+      } finally {}
     }
+    return user;
+  }
+
+  Future<void> inputData() async {
+    final FirebaseUser user = await _auth.currentUser();
   }
 
   @override
@@ -99,15 +102,27 @@ class _SignUp_screenState extends State<SignUp_screen> {
                   SizedBox(height: 20.0),
                   Container(
                     width: 250.0,
-                    child: FlatButton(
-                      padding: EdgeInsets.all(10.0),
-                      onPressed: _submit,
-                      color: Colors.blue,
-                      child: Text(
-                        'Sign Up',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
+                    child: Builder(
+                      builder: (context) => FlatButton(
+                        padding: EdgeInsets.all(10.0),
+                        onPressed: () => {
+                          temp = _submit,
+                          inputData,
+                          print(temp),
+                          Scaffold.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Account Created'),
+                              duration: Duration(seconds: 2),
+                            ),
+                          )
+                        },
+                        color: Colors.blue,
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
                         ),
                       ),
                     ),

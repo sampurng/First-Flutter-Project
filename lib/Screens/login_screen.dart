@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time_be_gentle/Screens/signUp_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'Home.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key}) : super(key: key);
@@ -14,11 +17,23 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   String email, password;
 
-  _submit() {
+  Future<void> _submit() async {
+    print(email);
+    print(password);
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      print(email);
-      print(password);
+      try {
+        FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Home(),
+          ),
+        );
+      } catch (e) {
+        print(e.toString());
+      }
     }
   }
 
